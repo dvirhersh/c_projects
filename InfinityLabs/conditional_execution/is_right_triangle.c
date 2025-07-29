@@ -31,7 +31,7 @@ static float Abs(float x)
     return (x < 0) ? -x : x;
 }
 
-float main()
+int main()
 {
     printf("Testing Report:\n");
     printf("Is right triangle: %d\n", IsRightTriangle(27.00, 33.24, 23.00)); // 1

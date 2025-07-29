@@ -14,7 +14,7 @@ int IsPrimeNumber(unsigned long num)
     return 1;
 }
 
-float main()
+int main()
 {
     printf("Testing Report:\n");
     printf("IsPrimeNumber: %d\n", IsPrimeNumber(0));

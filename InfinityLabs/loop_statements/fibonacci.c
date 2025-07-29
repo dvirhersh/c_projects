@@ -14,7 +14,7 @@ unsigned Fibonacci(unsigned index)
     return fib_num;
 }
 
-float main()
+int main()
 {
     printf("Testing Report:\n");
     printf("Fibonacci: %d\n", Fibonacci(0));
