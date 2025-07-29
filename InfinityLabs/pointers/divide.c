@@ -1,30 +1,26 @@
 #include <stdio.h>
 
-int Divide(int numerator, int denominator, int *quotient, int *remainder)
+int Divide(int numerator, int denominator, int *quotient, int *reminder)
 {
     if (denominator == 0)
-    {
         return -1;
-    }
-
     *quotient = numerator / denominator;
-    *remainder = numerator % denominator;
-
+    *reminder = numerator % denominator;
     return 0;
 }
 
 int main()
 {
-    int numerator = 14;
-    int denominator = 6;
+    int numerator = 59;
+    int denominator = -3;
     int quotient;
-    int remainder;
+    int reminder;
 
-    printf("Testing Report:\n");
+    printf("\nTesting Report:\n");
 
-    printf("Running test: Divide(%d, %d):\n %d\n",
-           numerator, denominator, Divide(numerator, denominator, &quotient, &remainder));
-    printf("quotient = %d, remainder = %d\n", quotient, remainder);
+    Divide(numerator, denominator, &quotient, &reminder);
+    printf("quotient = %d\n", quotient);
+    printf("reminder = %d\n", reminder);
 
     return 0;
 }
