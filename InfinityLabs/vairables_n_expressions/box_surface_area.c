@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 unsigned BoxSurfaceArea(unsigned length, unsigned width, unsigned height)
 {

@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int Maximum(int num1, int num2)
 {
