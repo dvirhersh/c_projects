@@ -18,6 +18,11 @@ contact_type *CreateContact(const char *name, unsigned tel_num)
     return contact;
 }
 
+void DestroyContact(contact_type *contact)
+{
+    free(contact);
+}
+
 void RunTest(const char *name, unsigned tel)
 {
     contact_type *contact = CreateContact(name, tel);
@@ -35,7 +40,7 @@ void RunTest(const char *name, unsigned tel)
         printf("Failed\n");
     }
 
-    // DestroyContact(contact);
+    DestroyContact(contact);
 }
 
 int main()
