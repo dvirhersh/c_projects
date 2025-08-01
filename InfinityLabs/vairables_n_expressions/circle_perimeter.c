@@ -10,7 +10,6 @@ float CirclePerimeter(float radius)
 int main()
 {
     printf("Testing Report:\n");
-    printf("Running test: CirclePerimeter(5.8): %f\n",
-           CirclePerimeter(5.8));
+    printf("Running test: CirclePerimeter(5.8): %f\n", CirclePerimeter(5.8));
     return 0;
 }

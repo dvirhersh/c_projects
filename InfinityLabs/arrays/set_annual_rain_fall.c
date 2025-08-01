@@ -1,5 +1,6 @@
-#include <stdlib.h> /* rand */
-#include <math.h>   /* pow */
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
 
 int annual_rainfalls[100];
 
@@ -23,16 +24,14 @@ int RainfallAverage(int num_years)
 
 int main()
 {
-    int start;
+    int num_of_years = 10;
     int end;
 
     printf("Testing Report:\n");
-    printf("Enter start:\n");
-    scanf("%d", &start);
-    printf("Enter end:\n");
-    scanf("%d", &end);
+    printf("Enter num_of_years:\n");
+    // scanf("%d", &num_of_years);
 
-    printf("Running test: RangeSum(%d, %d):\n %d\n", start, end, RangeSum(start, end));
+    printf("Running test: RainfallAverage(%d):\n %d\n", num_of_years, RainfallAverage(num_of_years));
 
     return 0;
 }

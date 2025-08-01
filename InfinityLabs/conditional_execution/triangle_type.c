@@ -20,7 +20,7 @@ int TriangleType(unsigned angle1, unsigned angle2)
 
 int main()
 {
-    printf("the triangle kind is: %d\n", TriangleType(-1, 90));
+    printf("the triangle kind is: %d\n", TriangleType(80, 80));
 
     return 0;
 }

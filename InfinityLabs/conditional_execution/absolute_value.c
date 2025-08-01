@@ -13,6 +13,6 @@ int AbsoluteValue(int num1)
 int main()
 {
     printf("Testing Report:\n");
-    printf("Running test: AbsoluteValue(8): %d\n", AbsoluteValue(8));
+    printf("Running test: AbsoluteValue(-8): %d\n", AbsoluteValue(-8));
     return 0;
 }

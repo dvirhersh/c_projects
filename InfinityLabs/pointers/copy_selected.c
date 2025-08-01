@@ -15,7 +15,7 @@ int CopySelected(const int array[], int size, int odd_numbers[])
     return j;
 }
 
-int main()
+int main(void)
 {
     const int size = 296;
     int source_arr[size];

@@ -24,14 +24,14 @@ int RangeSum(int start, int end)
 
 int main()
 {
-    int start = 6;
-    int end = 17;
+    int start;
+    int end;
 
     printf("Testing Report:\n");
     printf("Enter start:\n");
     scanf("%d", &start);
     printf("Enter end:\n");
-    // scanf("%d", &end);
+    scanf("%d", &end);
 
     printf("Running test: RangeSum(%d, %d):\n %d\n", start, end, RangeSum(start, end));
 

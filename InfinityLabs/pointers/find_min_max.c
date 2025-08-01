@@ -31,7 +31,7 @@ int main()
     for (int i = 0; i < size; i++)
     {
         grades[i] = rand() % 100;
-        printf("grades[%3d] = %2d\n", i, grades[i]);
+        // printf("grades[%3d] = %2d\n", i, grades[i]);
     }
 
     printf("\nTesting Report:\n");
