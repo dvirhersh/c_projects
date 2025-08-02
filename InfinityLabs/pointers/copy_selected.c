@@ -15,6 +15,19 @@ int CopySelected(const int array[], int size, int odd_numbers[])
     return j;
 }
 
+// int CopySelected(const int array[], int size, int odd_numbers[])
+// {
+//     /* ### Write your code below this line ### */
+//     int i = 0, j = 0;
+//     while (i < size)
+//     {
+//         if (*(array + i) % 2)
+//             *(odd_numbers + j++) = *(array + i);
+//         i++;
+//     }
+//     return j;
+// }
+
 int main(void)
 {
     const int size = 296;
@@ -28,7 +41,14 @@ int main(void)
 
     printf("\nTesting Report:\n");
 
-    printf("num of odd numbers is : %0d\n", CopySelected(source_arr, size, new_arr));
+    int count = CopySelected(source_arr, size, new_arr);
+    printf("num of odd numbers is: %d\n", count);
+    printf("Odd numbers:\n");
+    for (int i = 0; i < count; i++)
+    {
+        printf("%d ", new_arr[i]);
+    }
+    printf("\n");
 
     return 0;
 }
