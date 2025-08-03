@@ -19,9 +19,9 @@ int CalculateAverage(const int array[], size_t size)
 
 int main()
 {
-    const int size = 5;
-    int my_array[5] = {12, 45, 32, 56, 28};
-    printf("Testing Report:\n\n");
+    int my_array[] = {12, 45, 32, 56, 28};
+    int size = sizeof(my_array) / sizeof(my_array[0]);
+    printf("\nTesting Report:\n");
     printf("CalculateAverage: %d\n", CalculateAverage(my_array, size));
 
     return 0;

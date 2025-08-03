@@ -8,6 +8,7 @@ float SquareRoot(float number)
     while (sqrt != temp)
     {
         temp = sqrt;
+        printf("trial : %f\n", temp);
         sqrt = (sqrt + number / sqrt) / 2;
     }
 
@@ -17,8 +18,7 @@ float SquareRoot(float number)
 float main()
 {
     printf("Testing Report:\n");
-    printf("SquareRoot: %f\n", SquareRoot(9));
-    printf("SquareRoot: %f\n", SquareRoot(10));
+    printf("SquareRoot: %f\n", SquareRoot(82));
 
     return 0;
 }
