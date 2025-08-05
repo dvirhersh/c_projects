@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-static void ShiftLet(int array[], size_t size);
+static void ShiftLeft(int array[], size_t size);
 
 void MoveElements(int array[], size_t size, size_t count)
 {
@@ -13,12 +13,12 @@ void MoveElements(int array[], size_t size, size_t count)
     for (; i < count; i++)
     {
         temp = array[0];
-        ShiftLet(array, size - 1);
+        ShiftLeft(array, size - 1);
         array[size - 1] = temp;
     }
 }
 
-static void ShiftLet(int array[], size_t size)
+static void ShiftLeft(int array[], size_t size)
 {
     size_t i;
     for (i = 0; i < size; i++)
@@ -31,7 +31,7 @@ int main()
     int my_array[8] = {3, 7, 2, 8, 5, 9, 1, 4};
     printf("Testing Report:\n\n");
     MoveElements(my_array, size, 3);
-    printf("MArray contents:\n");
+    printf("Array contents:\n");
 
     for (int i = 0; i < 8; i++)
         printf("%d ", my_array[i]);

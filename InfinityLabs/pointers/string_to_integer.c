@@ -25,7 +25,7 @@ int main()
 {
     printf("%d\n", StringToInteger("123"));
     printf("%d\n", StringToInteger("-456"));
-    printf("%d\n", StringToInteger("+789"));
+    printf("%d\n", StringToInteger("789"));
     printf("%d\n", StringToInteger("007"));
 
     return 0;
