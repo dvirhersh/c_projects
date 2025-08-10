@@ -3,20 +3,21 @@
 
 size_t StringLength(const char *str)
 {
-    size_t len = 0;
+    const char *s_iter = NULL;
 
     assert(str != NULL);
 
-    while (str[len] != '\0')
-        len++;
-    return len;
+    for (s_iter = str; *s_iter != '\0'; ++s_iter)
+        ;
+
+    return s_iter - str;
 }
 
 int main()
 {
     printf("\nTesting Report:\n");
     // char *str = NULL;
-    char *str = "May the force be with u";
+    char *str = "May the force be with u, ";
     int length = StringLength(str);
     printf("length = %d\n", length);
 
