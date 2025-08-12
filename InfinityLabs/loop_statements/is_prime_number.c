@@ -20,7 +20,7 @@ int main()
     printf("IsPrimeNumber: %d\n", IsPrimeNumber(0));
     printf("IsPrimeNumber: %d\n", IsPrimeNumber(1));
     printf("IsPrimeNumber: %d\n", IsPrimeNumber(2));
-    printf("IsPrimeNumber: %d\n", IsPrimeNumber(7));
+    printf("IsPrimeNumber: %d\n", IsPrimeNumber(5508409));
 
     return 0;
 }
