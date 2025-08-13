@@ -1,13 +1,13 @@
-#include <stdio.h>
+#include <stddef.h>
 
 int CalculateAverage(const int array[], size_t size)
 
 {
     int i = 0;
-    long sum = 0;
+    int sum = 0;
     float avg = 0;
 
-    if (size == 0)
+    if (size <= 0)
         return 0;
 
     for (; i < size; i++)
