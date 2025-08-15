@@ -1,28 +1,26 @@
 #include <stdio.h>
 
-static void ShiftLeft(int array[], size_t size);
+static void MoveOne(int array[], size_t size);
 
 void MoveElements(int array[], size_t size, size_t count)
 {
     size_t i = 0;
-    int temp;
 
     if (count == 0 || count >= size)
         return;
-
-    for (; i < count; i++)
-    {
-        temp = array[0];
-        ShiftLeft(array, size - 1);
-        array[size - 1] = temp;
-    }
+    for (; i < count; ++i)
+        MoveOne(array, size);
 }
 
-static void ShiftLeft(int array[], size_t size)
+static void MoveOne(int array[], size_t size)
 {
-    size_t i;
-    for (i = 0; i < size; i++)
-        array[i] = array[i + 1];
+    int temp = array[0];
+    size_t i = 1;
+
+    for (; i < size; ++i)
+        array[i - 1] = array[i];
+
+    array[size - 1] = temp;
 }
 
 int main()
