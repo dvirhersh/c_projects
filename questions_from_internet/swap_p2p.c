@@ -12,7 +12,7 @@ int main(void)
     int **pp1 = &p1;
     int **pp2 = &p2;
     printf("before swap: a = %d, b = %d\n", a, b);
-    swap(pp1, NULL);
+    swap(pp1, pp2);
     printf("after swap : a = %d, b = %d\n", a, b);
 
     return 0;
