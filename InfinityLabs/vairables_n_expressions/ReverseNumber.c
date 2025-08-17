@@ -15,9 +15,15 @@ unsigned ReverseNumber(unsigned number)
 
 int main()
 {
-    unsigned number = 321;
+    unsigned number;
 
-    printf("in celsius = %d\n", ReverseNumber(number));
+    while (number != 0)
+    {
+        printf("enter 3 digit numbers\n");
 
+        scanf("%d", &number);
+
+        printf("reverse number = %d\n", ReverseNumber(number));
+    }
     return 0;
 }
