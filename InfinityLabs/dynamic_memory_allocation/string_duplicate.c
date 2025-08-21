@@ -14,7 +14,9 @@ char *StringDuplicate(const char *str)
     if (copy == NULL)
         return NULL;
 
-    return strcpy(copy, str);
+    strcpy(copy, str);
+
+    return copy;
 }
 
 int main()
