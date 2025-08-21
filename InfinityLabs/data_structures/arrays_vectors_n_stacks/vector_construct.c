@@ -45,6 +45,13 @@ void VectorResize(vector_type *vector, int addition)
     vector->size = new_size;
 }
 
+void VectorPush(vector_type *vector, int data)
+{
+    assert(vector->size < vector->capacity); /* debug builds: catch misuse */
+
+    vector->array[vector->size++] = data;
+}
+
 /* ---- Tests ---- */
 static int
 ConstructTest1(void)
