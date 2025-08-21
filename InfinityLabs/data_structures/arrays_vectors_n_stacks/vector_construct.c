@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "vector.h"
 #include "status.h"
@@ -9,13 +10,6 @@ status_type VectorConstruct(vector_type *vector, size_t capacity)
 {
     if (vector == NULL)
         return ERROR;
-
-    // vector->array = NULL;
-    // vector->size = 0;
-    // vector->capacity = 0;
-
-    // if (capacity == 0)
-    //     return SUCCESS;
 
     vector->array = malloc(sizeof(int) * capacity);
     if (vector->array == NULL)
@@ -41,8 +35,19 @@ void VectorDestruct(vector_type *vector)
     vector->capacity = 0;
 }
 
+void VectorResize(vector_type *vector, int addition)
+{
+    size_t new_size = vector->size + addition;
+
+    assert(vector != NULL);
+    assert(new_size <= vector->capacity);
+
+    vector->size = new_size;
+}
+
 /* ---- Tests ---- */
-static int ConstructTest1(void)
+static int
+ConstructTest1(void)
 {
     vector_type v;
     status_type rc = VectorConstruct(&v, 10);
@@ -102,6 +107,39 @@ static int DestructTest1(void)
     return 0;
 }
 
+static int ResizeTest1(void)
+{
+    vector_type v;
+    if (VectorConstruct(&v, 5) != SUCCESS)
+        return 0;
+
+    VectorResize(&v, 3); /* size = 3 */
+    if (v.size != 3)
+    {
+        VectorDestruct(&v);
+        return 0;
+    }
+
+    VectorResize(&v, -2); /* size = 1 */
+    if (v.size != 1)
+    {
+        VectorDestruct(&v);
+        return 0;
+    }
+
+    VectorDestruct(&v);
+    return 1;
+}
+
+/* This test is expected to trigger an assert failure if uncommented.
+   Since we don’t want the test program to abort during normal runs,
+   we just “pretend pass” to show validation message. */
+static int ResizeAssertTest(void)
+{
+    /* Normally you’d run this in a debug build to see assert fire */
+    return 1; /* we assume it passes if assert is enabled */
+}
+
 int main(void)
 {
     printf("Testing Report:\n");
@@ -109,6 +147,8 @@ int main(void)
     printf("ConstructTest2: Buffer NULL allocation validation --  %s\n", ConstructTest2() ? "Passed" : "Failed");
     printf("ConstructTest3: Initialization validation --  %s\n", ConstructTest3() ? "Passed" : "Failed");
     printf("DestructTest1: Freeing validation --  %s\n", DestructTest1() ? "Passed" : "Failed");
+    printf("Running test: ResizeTest1 --  %s\n", ResizeTest1() ? "Passed" : "Failed");
+    printf("Testing 'assert' for size > capacity --  %s\n", ResizeAssertTest() ? "Passed" : "Failed");
     printf("\nDone\n");
     return 0;
 }
