@@ -2,15 +2,12 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <assert.h>
+
 #include "vector.h"
 #include "status.h"
 
 status_type VectorConstruct(vector_type *vector, size_t capacity)
 {
-    if (vector == NULL)
-        return ERROR;
-
-    vector->array = malloc(sizeof(int) * capacity);
     if (vector->array == NULL)
         return ERROR;
 
@@ -22,28 +19,19 @@ status_type VectorConstruct(vector_type *vector, size_t capacity)
 
 void VectorDestruct(vector_type *vector)
 {
-    if (vector->array)
-    {
-        free(vector->array);
-        vector->array = NULL;
-    }
-    vector->size = 0;
-    vector->capacity = 0;
+    free(vector->array);
 }
 
 void VectorResize(vector_type *vector, int addition)
 {
-    size_t new_size = vector->size + addition;
+    assert(vector->size + addition <= vector->capacity);
 
-    assert(vector != NULL);
-    assert(new_size <= vector->capacity);
-
-    vector->size = new_size;
+    vector->size += addition;
 }
 
 void VectorPush(vector_type *vector, int data)
 {
-    assert(vector->size < vector->capacity); /* debug builds: catch misuse */
+    assert(vector->size < vector->capacity);
 
     vector->array[vector->size++] = data;
 }
@@ -51,9 +39,9 @@ void VectorPush(vector_type *vector, int data)
 int VectorPop(vector_type *vector)
 {
     assert(vector->size > 0);
-    vector->size--;
-    return vector->array[vector->size];
+    return vector->array[--vector->size];
 }
+
 /* ---- Tests ---- */
 static int ConstructTest1(void)
 {
