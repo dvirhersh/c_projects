@@ -27,6 +27,18 @@ int ListIsEmpty(const list_type *list)
     return (list->head.next == &list->head && list->head.prev == &list->head);
 }
 
+list_node_type *ListFind(const list_type *list, list_isequal_type isequal, const void *data)
+{
+    list_node_type *iter = NULL;
+
+    for (iter = list->head.next; iter != &list->head; iter = iter->next)
+    {
+        if (isequal(iter, data))
+            return iter;
+    }
+    return NULL;
+}
+
 /* simple client data type with an intrusive link */
 typedef struct
 {
