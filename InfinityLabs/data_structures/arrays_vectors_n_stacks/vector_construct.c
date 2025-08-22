@@ -2,7 +2,6 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <assert.h>
-
 #include "vector.h"
 #include "status.h"
 
@@ -23,9 +22,6 @@ status_type VectorConstruct(vector_type *vector, size_t capacity)
 
 void VectorDestruct(vector_type *vector)
 {
-    if (!vector)
-        return;
-
     if (vector->array)
     {
         free(vector->array);
@@ -52,9 +48,14 @@ void VectorPush(vector_type *vector, int data)
     vector->array[vector->size++] = data;
 }
 
+int VectorPop(vector_type *vector)
+{
+    assert(vector->size > 0);
+    vector->size--;
+    return vector->array[vector->size];
+}
 /* ---- Tests ---- */
-static int
-ConstructTest1(void)
+static int ConstructTest1(void)
 {
     vector_type v;
     status_type rc = VectorConstruct(&v, 10);
@@ -147,6 +148,37 @@ static int ResizeAssertTest(void)
     return 1; /* we assume it passes if assert is enabled */
 }
 
+static int PushTest1(void)
+{
+    vector_type v;
+    if (VectorConstruct(&v, 3) != SUCCESS)
+        return 0;
+
+    VectorPush(&v, 10);
+    VectorPush(&v, 20);
+
+    int ok = (v.size == 2 && v.array[0] == 10 && v.array[1] == 20);
+
+    VectorDestruct(&v);
+    return ok;
+}
+
+static int PushTest2(void)
+{
+    vector_type v;
+    if (VectorConstruct(&v, 2) != SUCCESS)
+        return 0;
+
+    VectorPush(&v, 1);
+    VectorPush(&v, 2);
+
+    /* Stop here: exactly filled to capacity, no overflow */
+    int ok = (v.size == 2 && v.array[0] == 1 && v.array[1] == 2);
+
+    VectorDestruct(&v);
+    return ok;
+}
+
 int main(void)
 {
     printf("Testing Report:\n");
@@ -156,6 +188,8 @@ int main(void)
     printf("DestructTest1: Freeing validation --  %s\n", DestructTest1() ? "Passed" : "Failed");
     printf("Running test: ResizeTest1 --  %s\n", ResizeTest1() ? "Passed" : "Failed");
     printf("Testing 'assert' for size > capacity --  %s\n", ResizeAssertTest() ? "Passed" : "Failed");
+    printf("Running test: PushTest1 --  %s\n", PushTest1() ? "Passed" : "Failed");
+    printf("Running test: PushTest2 --  %s\n", PushTest2() ? "Passed" : "Failed");
     printf("\nDone\n");
     return 0;
 }
