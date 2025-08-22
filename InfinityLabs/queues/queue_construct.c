@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "queue.h"
 #include "list.h"
+#include "status.h"
 
 /* ### This struct will be used in QueueEnqueue */
 typedef struct
@@ -16,25 +18,17 @@ void QueueConstruct(queue_type *queue)
     ListConstruct(&queue->list);
 }
 
-int main(void)
+status_type QueueEnqueue(queue_type *queue, int data)
 {
-    printf("Testing Report:\n");
+    queue_node_type *node = NULL;
 
-    queue_type q;
-    QueueConstruct(&q);
+    node = malloc(sizeof(*node));
+    if (node == NULL)
+        return ERROR;
 
-    /* ConstructTest1: Initialization validation */
-    // if (ListIsEmpty(&q.list) &&
-    //     q.list.head.next == &q.list.head &&
-    //     q.list.head.prev == &q.list.head)
-    // {
-    //     printf("ConstructTest1: Initialization validation --  Passed\n");
-    // }
-    // else
-    // {
-    //     printf("ConstructTest1: Initialization validation --  Failed\n");
-    // }
+    node->data = data;
 
-    printf("\nDone\n");
-    return 0;
+    ListInsert(&queue->list.head, &node->link);
+
+    return SUCCESS;
 }
