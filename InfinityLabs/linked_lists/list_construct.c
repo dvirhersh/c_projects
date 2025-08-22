@@ -2,7 +2,6 @@
 
 #include "list.h"
 
-/* ### Write your code below this line ### */
 void ListConstruct(list_type *list)
 {
     if (!list)
@@ -14,12 +13,15 @@ void ListConstruct(list_type *list)
 
 void ListInsert(list_node_type *position, list_node_type *node)
 {
-    list_node_type *next = position->next;
+    if (!position || !node)
+        return;
+
+    node->next = position->next;
+    node->prev = position;
+
+    position->next->prev = node;
 
     position->next = node;
-    node->prev = position;
-    next->prev = node;
-    node->next = next;
 }
 
 int ListIsEmpty(const list_type *list)
@@ -39,6 +41,19 @@ list_node_type *ListFind(const list_type *list, list_isequal_type isequal, const
     return NULL;
 }
 
+void ListRemove(list_node_type *node)
+{
+    if (!node)
+        return;
+    if (node->next == node || node->prev == node)
+        return;
+
+    node->prev->next = node->next;
+    node->next->prev = node->prev;
+
+    node->next = NULL;
+    node->prev = NULL;
+}
 /* simple client data type with an intrusive link */
 typedef struct
 {
