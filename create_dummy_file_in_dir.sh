@@ -5,3 +5,4 @@ for dir in */; do
 	echo "# Dummy file" > $file
 	touch dummy.md
 done
+
