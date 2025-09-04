@@ -6,3 +6,5 @@ alias gc9='gcc -std=99 -pedantic-errors -Wall -Wextra -DNDEBUG -o3'
 #
 # Valgrid alias
 alias vlg='valgrind --leak-check=yes --track-origins=yes'
+
+alias gs='git status'
