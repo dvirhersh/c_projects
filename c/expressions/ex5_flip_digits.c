@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int flip_digits(int n)
+int FlipDigits(int n)
 {
     int fliped_number = 0;
 
@@ -16,7 +16,7 @@ int flip_digits(int n)
 int main(void)
 {
     int n = 45920;
-    int fliped_number = flip_digits(n);
+    int fliped_number = FlipDigits(n);
     printf("number %d flipped to %d\n", n, fliped_number);
     return 0;
 }
