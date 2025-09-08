@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "flip_digits.h"
 
 int FlipDigits(int n)
 {
