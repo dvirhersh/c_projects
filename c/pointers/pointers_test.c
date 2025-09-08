@@ -20,6 +20,9 @@ int main(void)
     printf("before: x = %d, y = %d\n", x, y);
     Swap(&x, &y);
     printf("after : x = %d, y = %d\n", x, y);
+    
+    printf("\n");
+    PrintAddr();
 
     return 0;
 }

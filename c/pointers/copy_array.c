@@ -12,5 +12,4 @@ void CopyArray(const int *src, int *dst, size_t size)
         dst[i] = src[i];
     }
 
-    return;
 }
