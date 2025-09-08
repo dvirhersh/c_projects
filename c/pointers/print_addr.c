@@ -12,7 +12,7 @@ void PrintAddr()
     int **ptr3 = &ptr2;
 
     int *ptr4 = (int *)malloc(sizeof(int));
-    if (!ptr4) 
+    if (!ptr4)
         {
             printf("malloc issue in PrintAddr\n");
             return;
