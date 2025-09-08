@@ -1,7 +1,9 @@
+#include <stdio.h>
+
 double PowTen(int n)
 {
     double result = 1.0;
-    int i;
+    size_t i;
 
     if (n > 0)
     {
