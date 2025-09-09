@@ -8,5 +8,6 @@
     void SwapSizeTPtr(size_t **x, size_t **y);
     void SwapSizeTPtr2(size_t **x, size_t **y);
     size_t StrLen(const char* my_str);
+    int StrCmp(const char *str1, const char *str2);
 
 #endif  /*__POINTERS_TEST_H__*/

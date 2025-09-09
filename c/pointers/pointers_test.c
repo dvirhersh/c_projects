@@ -46,5 +46,7 @@ int main(void)
 
     printf("%lu\n", StrLen("pikachuu"));
 
+    printf("%d\n", StrCmp("abcd", "abc"));
+
     return 0;
 }
