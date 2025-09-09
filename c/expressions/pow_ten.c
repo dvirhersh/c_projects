@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 double PowTen(int n)
 {
     double result = 1.0;
