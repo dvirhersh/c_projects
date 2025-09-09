@@ -1,5 +1,9 @@
 #include <stdio.h>
-#include "pointers_test.h"
+#include "swap.h"
+#include "copy_array.h"
+#include "print_addr.h"
+#include "swap_size_t.h"
+#include "strlen.h"
 
 #define N 4
 
