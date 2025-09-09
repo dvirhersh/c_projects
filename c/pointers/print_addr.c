@@ -14,7 +14,6 @@ void PrintAddr()
     int *ptr4 = (int *)malloc(sizeof(int));
     if (!ptr4)
         {
-            printf("malloc issue in PrintAddr\n");
             return;
         }
 

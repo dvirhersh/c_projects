@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void CopyArray(const int *src, int *dst, size_t size)
+void CopyArray(int *dst, const int *src, size_t size)
 {
     size_t i;
 

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "pointers_header.h"
+#include "pointers_test.h"
 
 #define N 4
 
@@ -15,7 +15,7 @@ int main(void)
     size_t u = 5, v = 9;
     size_t *pu = &u, *pv = &v;
 
-    CopyArray(arr_1, arr_2, N);
+    CopyArray(arr_2, arr_1, N);
     printf("arr2 = \n");
     for (i = 0; i < N; i++)
     {
