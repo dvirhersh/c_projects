@@ -42,7 +42,9 @@ int main(void)
 
     printf("Before SwapSizeTPtr2: u = %lu, v = %lu\n", u, v);
     SwapSizeTPtr2(&pu, &pv);
-    printf("After  SwapSizeTPtr2: u = %lu, v = %lu\n", u, v);
+    printf("After  SwapSizeTPtr2: u = %lu, v = %lu\n\n", u, v);
+
+    printf("%lu\n", StrLen("pikachuu"));
 
     return 0;
 }
