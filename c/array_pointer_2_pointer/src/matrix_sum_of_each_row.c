@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-void MatrixSumOfEachRow(size_t rows, size_t cols, const int arr[rows][cols], 
-    int *result)
+void MatrixSumOfEachRow(size_t rows, size_t cols, const int *arr, int *result)
 {
     size_t i = 0;
     size_t j = 0;
@@ -11,7 +10,7 @@ void MatrixSumOfEachRow(size_t rows, size_t cols, const int arr[rows][cols],
     {
         for (j = 0; j < cols; j++)
         {
-            row_sum += arr[i][j];
+            row_sum += arr[i * cols + j];
         }
         
         result[i] = row_sum;

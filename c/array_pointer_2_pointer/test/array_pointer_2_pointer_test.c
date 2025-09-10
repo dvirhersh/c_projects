@@ -12,7 +12,7 @@ int main(void)
     int result[3] = {0};
     size_t i = 0;
 
-    MatrixSumOfEachRow(3, 4, matrix, result);
+    MatrixSumOfEachRow(3, 4, (const int*)matrix, result);
     
     printf("Test array and pointer to pointer ->\n\n");
     
@@ -20,7 +20,6 @@ int main(void)
     {
         printf("result arr[%lu] is: %d \n", i, result[i]);
     }
-
 
     return 0;
 }
