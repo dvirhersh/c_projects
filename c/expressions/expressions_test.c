@@ -4,22 +4,22 @@
 int main(void)
 {
     int n = -3;
-    double p_10 ;
-    int x = 15, y = 32;
-    int flipped_number;
+    double power_10 = 0;
+    int first_var = 15, second_var = 32;
+    int flipped_number = 0;
 
     HelloWorldAscii();
 
-    p_10 = PowTen(n);
-    printf("10 ^ %d = %f\n", n, p_10);
+    power_10 = PowTen(n);
+    printf("10 ^ %d = %f\n", n, power_10);
 
     n = 45920;
     flipped_number = FlipDigits(n);
     printf("number %d flipped to %d\n", n, flipped_number);
 
-    printf("before: x = %d, y = %d\n", x, y);
-    Swap(&x, &y);
-    printf("after : x = %d, y = %d\n", x, y);
+    printf("before: first_var = %d, second_var = %d\n", first_var, second_var);
+    Swap(&first_var, &second_var);
+    printf("after : first_var = %d, second_var = %d\n", first_var, second_var);
 
     return 0;
 }

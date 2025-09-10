@@ -3,18 +3,18 @@
 double PowTen(int n)
 {
     double result = 1.0;
-    int i;
+    int i = 0;
 
     if (n > 0)
     {
-        for (i = 0; i < n; i++)
+        for (; i < n; i++)
         {
             result *= 10.0;
         }
     }
     else if (n < 0)
     {
-        for (i = 0; i > n; i--)
+        for (; i > n; i--)
         {
             result /= 10.0;
         }
