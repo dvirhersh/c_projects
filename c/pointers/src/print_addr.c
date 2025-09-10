@@ -23,6 +23,7 @@ void PrintAddr()
     printf("arr *ptr4      addr = %p\n\n", (void*)ptr4);
 
     free(ptr4);
+    ptr4 = NULL;
 
     return;
 }
