@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "matrix_sum_of_each_row.h"
+#include "joseph_problem.h"
 
 int main(void)
 {
