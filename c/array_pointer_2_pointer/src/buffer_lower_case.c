@@ -4,13 +4,13 @@
 #include <string.h>
 
 static int NumOfEnvArgs(char *envp[]);
-static char** CopyEnvArgsToBuffLower(char *envp[], size_t num_of_env_args);
-static char* LowerCase(const char* ch);
+static char **CopyEnvArgsToBuffLower(char *envp[], size_t num_of_env_args);
+static char *LowerCase(const char *ch);
 
-char** BufferLowerCase(char *envp[])
+char **BufferLowerCase(char *envp[])
 {
     int num_of_env_args = NumOfEnvArgs(envp);
-    char** buff_lower_case = CopyEnvArgsToBuffLower(envp, num_of_env_args);
+    char **buff_lower_case = CopyEnvArgsToBuffLower(envp, num_of_env_args);
     assert(buff_lower_case);
     return buff_lower_case;
 }
@@ -24,10 +24,10 @@ static int NumOfEnvArgs(char *envp[])
     return num_of_env_args;
 }
 
-static char** CopyEnvArgsToBuffLower(char *envp[], size_t num_of_env_args)
+static char **CopyEnvArgsToBuffLower(char *envp[], size_t num_of_env_args)
 {
     size_t i = 0;
-    char **buff = (char **)malloc((num_of_env_args + 1) * sizeof(char*));
+    char **buff = (char **)malloc((num_of_env_args + 1) * sizeof(char *));
     assert(buff);
 
     for (; i < num_of_env_args; i++)
@@ -37,11 +37,11 @@ static char** CopyEnvArgsToBuffLower(char *envp[], size_t num_of_env_args)
     return buff;
 }
 
-static char* LowerCase(const char* str)
+static char *LowerCase(const char *str)
 {
     size_t i = 0;
     size_t len = strlen(str);
-    char* str_lower_case = (char*)malloc(len + 1);
+    char *str_lower_case = (char *)malloc(len + 1);
     assert(str_lower_case);
 
     for (i = 0; i < len; i++)
@@ -56,7 +56,7 @@ static char* LowerCase(const char* str)
     return str_lower_case;
 }
 
-void PrintBuffer(char** ch)
+void PrintBuffer(char **ch)
 {
     int i = 0;
     for (; ch[i] != NULL; i++)

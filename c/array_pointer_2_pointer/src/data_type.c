@@ -16,5 +16,5 @@ void DataTypes(void)
     printf("Size of variable 'a': %ld bytes\n", sizeof(a));
     printf("Size of array 'arr': %ld bytes\n", sizeof(arr));
     printf("Number of elements in 'arr': %ld\n", sizeof(arr) / sizeof(arr[0]));
-    printf("Size of array 'arr': %ld bytes\n", sizeof(void*));
+    printf("Size of array 'arr': %ld bytes\n", sizeof(void *));
 }

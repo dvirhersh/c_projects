@@ -12,7 +12,7 @@ void MatrixSumOfEachRow(size_t rows, size_t cols, const int *arr, int *result)
         {
             row_sum += arr[i * cols + j];
         }
-        
+
         result[i] = row_sum;
         row_sum = 0;
     }
