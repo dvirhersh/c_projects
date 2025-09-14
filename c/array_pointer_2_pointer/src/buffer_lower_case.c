@@ -3,9 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define DELTA_FOR_LETTER_CASE ('a' - 'A')
+
 static int NumOfEnvArgs(char *envp[]);
-static char **CopyEnvArgsToBuffLower(char *envp[], size_t num_of_env_args);
-static char *LowerCase(const char *ch);
+static char** CopyEnvArgsToBuffLower(char *envp[], size_t num_of_env_args);
+static char* LowerCase(const char *ch);
 
 char **BufferLowerCase(char *envp[])
 {
@@ -24,7 +26,7 @@ static int NumOfEnvArgs(char *envp[])
     return num_of_env_args;
 }
 
-static char **CopyEnvArgsToBuffLower(char *envp[], size_t num_of_env_args)
+static char** CopyEnvArgsToBuffLower(char *envp[], size_t num_of_env_args)
 {
     size_t i = 0;
     char **buff = (char **)malloc((num_of_env_args + 1) * sizeof(char *));
@@ -37,7 +39,7 @@ static char **CopyEnvArgsToBuffLower(char *envp[], size_t num_of_env_args)
     return buff;
 }
 
-static char *LowerCase(const char *str)
+static char* LowerCase(const char *str)
 {
     size_t i = 0;
     size_t len = strlen(str);
@@ -47,7 +49,7 @@ static char *LowerCase(const char *str)
     for (i = 0; i < len; i++)
     {
         if (str[i] >= 'A' && str[i] <= 'Z')
-            str_lower_case[i] = str[i] + 'a' - 'A';
+            str_lower_case[i] = str[i] + DELTA_FOR_LETTER_CASE;
         else
             str_lower_case[i] = str[i];
         str_lower_case[len] = '\0';

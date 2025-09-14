@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-static int *CreateCircleOfSuiciadls(int num);
+static int* CreateCircleOfSuiciadls(int num);
 static int KillNext(int *arr, int cur, int *killed);
 
 int JosephusProblem(int num)
@@ -21,17 +21,17 @@ int JosephusProblem(int num)
 static int KillNext(int *arr, int cur, int *killed)
 {
     int is_going_to_be_killed = arr[arr[cur]];
-    arr[arr[cur]] = 0; /* mark as killed */
+    arr[arr[cur]] = 0;
     (*killed)++;
-    arr[cur] = is_going_to_be_killed; /* bypass the killed one */
-    return is_going_to_be_killed;     /* new current index */
+    arr[cur] = is_going_to_be_killed;
+    return is_going_to_be_killed;
 }
-static int *CreateCircleOfSuiciadls(int num)
+static int* CreateCircleOfSuiciadls(int num)
 {
     int *arr = (int *)malloc(num * sizeof(int));
     int i = 0;
     assert(arr);
     for (i = 0; i < num; i++)
-        arr[i] = (i + 1) % num; /* next index in the circle */
+        arr[i] = (i + 1) % num;
     return arr;
 }
