@@ -1,12 +1,16 @@
-#include <stdio.h>
-#include <assert.h>
-#include <stdlib.h>
-#include <string.h>
+#include <stdio.h>  /*for sizeof, printf, scanf*/
+#include <string.h> /*for strcmp*/
+#include <time.h>   /*for time*/
+#include <stdlib.h> /*for free()*/
 #include "file.h"
 
 static void Print(int num);
 static void PrintMeMain();
-int main(void);
+static int StrCompareType1(const char *command_n, const char *string);
+static int StrCompareType2(const char *command_n, const char *string);
+static int StrCompareDefult(const char *command_n, const char *string);
+op_status_t Logger(char *file_name);
+int main(int argc, char *argv[]);
 
 typedef struct
 {
@@ -19,25 +23,44 @@ static void Print(int num)
     printf("Number = %d\n", num);
 }
 
-int StrCompareType1(const char *command_n, const char *string)
+static void PrintMeMain()
+{
+    size_t i = 0;
+    enum
+    {
+        ARRAY_LEN = 10
+    };
+    print_me_t arr[ARRAY_LEN];
+
+    for (i = 0; i < ARRAY_LEN; i++)
+    {
+        arr[i].num = i * 3;
+        arr[i].Print = &Print;
+        arr[i].Print(arr[i].num);
+    }
+}
+
+static int StrCompareType1(const char *command_n, const char *string)
 {
     int result = 0;
     result = strcmp(command_n, string);
     return result;
 }
 
-int StrCompareType2(const char *command_n, const char *string)
+static int StrCompareType2(const char *command_n, const char *string)
 {
     int result = 0;
     result = command_n[0] - string[0];
     return result;
 }
 
-int str_compare_defult(const char *command_n, const char *string)
+static int StrCompareDefult(const char *command_n, const char *string)
 {
+    (void)command_n;
+    (void)string;
     return 0;
 }
-/*struct for 2nd exc*/
+
 typedef struct Commands
 {
     const char *command_n;
@@ -51,7 +74,11 @@ op_status_t Logger(char *file_name)
     int i = 0;
     int commaned_found = 1;
     op_status_t results = FAIL;
-    char string[1000] = {0};
+    enum
+    {
+        STR_LEN = 10
+    };
+    char string[STR_LEN] = {0};
     commands_t *commaned_arr = (commands_t *)malloc(sizeof(commands_t) * 5);
     commaned_arr[0].command_n = "-remove";
     commaned_arr[0].str_compare = StrCompareType1;
@@ -66,12 +93,16 @@ op_status_t Logger(char *file_name)
     commaned_arr[3].str_compare = StrCompareType2;
     commaned_arr[3].act_t = FilePrependLine;
     commaned_arr[4].command_n = "defult";
-    commaned_arr[4].str_compare = str_compare_defult;
+    commaned_arr[4].str_compare = StrCompareDefult;
     commaned_arr[4].act_t = FileAppend;
-    while (results != EXIT)
+    while (1)
     {
         printf("type wanted action\n");
-        scanf("%[^\n]%*c", string);
+        if (scanf("%[^\n]%*c", string) != 1)
+        {
+            printf("Dvir debug 1");
+            fprintf(stderr, "Failed to read input\n");
+        }
 
         for (i = 0; i < num_commaneds; i++)
         {
@@ -91,19 +122,11 @@ op_status_t Logger(char *file_name)
 
 int main(int argc, char *argv[])
 {
-    int i = 0;
     char *file_name = argv[1];
-    printme_t *arr_struc = (printme_t *)malloc(sizeof(printme_t) * 10);
-    assert(arr_struc != 0);
 
-    for (i = 0; i < 10; i++)
-    {
-        arr_struc[i].value = i;
-        arr_struc[i].Print = Print;
-        arr_struc[i].Print(&arr_struc[i].value);
-    }
-    free(arr_struc);
-    arr_struc = NULL;
+    (void)argc;
+
+    PrintMeMain();
 
     Logger(file_name);
 

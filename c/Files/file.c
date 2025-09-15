@@ -23,6 +23,7 @@ op_status_t FileAppend(const char *str, const char *file_name)
 op_status_t FileDelete(const char *null_ptr, const char *file_name)
 {
     (void)null_ptr;
+
     if (remove(file_name) == 0)
     {
         printf("File %s was deleted", file_name);
