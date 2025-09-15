@@ -198,6 +198,19 @@ void EnterString(char *file_name)
     {
         printf("Enter your string\n");
         next_line = ReadLine(stdin);
+
+        if (NULL == next_line)
+            return;
+
+        for (i = 0; i < size; i++)
+        {
+            if (operationsArray[i].cmd_compare_func(next_line, operationsArray[i].op))
+            {
+                status = operationsArray[i].act(next_line, file_name);
+                free(next_line);
+                break;
+            }
+        }
     }
 }
 
