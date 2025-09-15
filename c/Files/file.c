@@ -5,13 +5,17 @@
 op_status_t FileAppend(const char *str, const char *file_name)
 {
     FILE *fptr = fopen(file_name, "a");
-
     if (NULL == fptr)
         return FAILED_TO_OPEN;
 
-    fprintf(fptr, "/n");
-    fprintf(fptr, "%s", str);
-    fclose(fptr);
+    if (fprintf(fptr, "\n") < 0 || fprintf(fptr, "%s", str) < 0)
+    {
+        fclose(fptr);
+        return FAILED_TO_WRITE;
+    }
+
+    if (fclose(fptr) != 0)
+        return FAILED_TO_CLOSE;
 
     return SUCCESS;
 }
@@ -31,9 +35,8 @@ op_status_t FileDelete(const char *null_ptr, const char *file_name)
 
 op_status_t FileCountLinesAndPrint(const char *null_ptr, const char *file_name)
 {
-
     size_t number_of_lines = 0;
-    char c = 0;
+    int c = 0;
 
     FILE *fptr = fopen(file_name, "r");
     if (NULL == fptr)
@@ -45,7 +48,8 @@ op_status_t FileCountLinesAndPrint(const char *null_ptr, const char *file_name)
         if ('\n' == c)
             number_of_lines++;
 
-    fclose(fptr);
+    if (fclose(fptr) != 0)
+        return FAILED_TO_CLOSE;
 
     printf("number of lines is: %lu\n", number_of_lines);
 
