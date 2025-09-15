@@ -51,3 +51,5 @@ op_status_t FileCountLinesAndPrint(const char *null_ptr, const char *file_name);
 op_status_t FileExitProgram(const char *, const char *file_name);
 /*explain what this function does*/
 op_status_t FilePrependLine(const char *, const char *file_name);
+
+void EnterStringToTheFile(char *file_name);

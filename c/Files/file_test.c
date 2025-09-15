@@ -37,7 +37,23 @@ static void PrintMeMain()
 
 int main(void)
 {
+    FILE *fptr;
+
     PrintMeMain();
+    fptr = fopen("Elul.txt", "w");
+    if (NULL == fptr)
+        return FAILED_TO_OPEN;
+
+    FileAppend("My name is what??", "Elul.txt");
+    FileCountLinesAndPrint(NULL, "Elul.txt");
+    FilePrependLine("Asaf birthday", "Elul.txt");
+    /* FileDelete(NULL, "Elul.txt"); */
+
+    EnterStringToTheFile("Elul.txt");
+    FileExitProgram(NULL, "Elul.txt");
+    printf("Check if exit\n");
+
+    fclose(fptr);
 
     return 0;
 }

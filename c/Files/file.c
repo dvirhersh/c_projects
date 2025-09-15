@@ -181,7 +181,7 @@ op_status_t FilePrependLine(const char *string, const char *file_name)
     return SUCCESS;
 }
 
-void EnterString(char *file_name)
+void EnterStringToTheFile(char *file_name)
 {
     char *next_line;
     size_t i = 0, size;
@@ -204,7 +204,8 @@ void EnterString(char *file_name)
 
         for (i = 0; i < size; i++)
         {
-            if (operationsArray[i].cmd_compare_func(next_line, operationsArray[i].op))
+            if (operationsArray[i].cmd_compare_func(next_line,
+                                                    operationsArray[i].op))
             {
                 status = operationsArray[i].act(next_line, file_name);
                 free(next_line);
@@ -214,6 +215,7 @@ void EnterString(char *file_name)
     }
 }
 
+/*
 int main(void)
 {
     FILE *fptr;
@@ -224,13 +226,14 @@ int main(void)
     FileAppend("My name is what??", "Elul.txt");
     FileCountLinesAndPrint(NULL, "Elul.txt");
     FilePrependLine("Asaf birthday", "Elul.txt");
-    /* FileDelete(NULL, "Elul.txt"); */
+    FileDelete(NULL, "Elul.txt");
 
-    EnterString("Elul.txt");
+    EnterStringToTheFile("Elul.txt");
     FileExitProgram(NULL, "Elul.txt");
     printf("Check if exit\n");
 
     fclose(fptr);
 
     return SUCCESS;
-}
+    }
+*/
