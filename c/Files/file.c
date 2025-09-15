@@ -48,6 +48,7 @@ op_status_t FileCountLinesAndPrint(const char *null_ptr, const char *file_name)
     while ((c = fgetc(fptr)) != EOF)
         if ('\n' == c)
             number_of_lines++;
+    number_of_lines++;
 
     if (fclose(fptr) != 0)
         return FAILED_TO_CLOSE;
@@ -118,7 +119,8 @@ op_status_t FilePrependLine(const char *string, const char *file_name)
 
 int main(void)
 {
-    FileAppend(NULL, "dvir.txt");
-    FileDelete(NULL, "dvir.txt");
+    /* FileAppend(NULL, "dvir.txt"); */
+    /* FileDelete(NULL, "dvir.txt"); */
+    FileCountLinesAndPrint(NULL, "dvir.txt");
     return 0;
 }
