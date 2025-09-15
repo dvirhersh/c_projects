@@ -18,7 +18,11 @@ static char *ReadLine(FILE *stream)
 {
     size_t total = 0;
     int c = 0;
-    char *s = (char *)malloc(4098);
+    enum
+    {
+        many_chars = 256
+    };
+    char *s = malloc(many_chars);
     if (s == NULL)
     {
         return NULL;
@@ -83,7 +87,7 @@ op_status_t FileAppend(const char *str, const char *file_name)
     return SUCCESS;
 }
 
-op_status_t FileDelete(const char *null_ptr, const char *file_name)
+op_status_t FileRemove(const char *null_ptr, const char *file_name)
 {
     (void)null_ptr;
 
@@ -167,6 +171,7 @@ op_status_t FilePrependLine(const char *string, const char *file_name)
     if (fptr == NULL)
     {
         free(temp_file);
+        temp_file = NULL;
         return FAIL;
     }
 
@@ -187,7 +192,7 @@ void EnterStringToTheFile(char *file_name)
     size_t i = 0, size;
     op_status_t status = 0;
     const operation_t operationsArray[] =
-        {{"-remove", CompareCommand, FileDelete},
+        {{"-remove", CompareCommand, FileRemove},
          {"-count", CompareCommand, FileCountLinesAndPrint},
          {"-exit", CompareCommand, FileExitProgram},
          {"<", CompareLessThen, FilePrependLine},
@@ -209,6 +214,7 @@ void EnterStringToTheFile(char *file_name)
             {
                 status = operationsArray[i].act(next_line, file_name);
                 free(next_line);
+                printf("Dvir debug 1 \n");
                 break;
             }
         }
@@ -226,7 +232,7 @@ int main(void)
     FileAppend("My name is what??", "Elul.txt");
     FileCountLinesAndPrint(NULL, "Elul.txt");
     FilePrependLine("Asaf birthday", "Elul.txt");
-    FileDelete(NULL, "Elul.txt");
+    FileRemove(NULL, "Elul.txt");
 
     EnterStringToTheFile("Elul.txt");
     FileExitProgram(NULL, "Elul.txt");

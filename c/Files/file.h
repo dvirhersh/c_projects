@@ -37,7 +37,7 @@ op_status_t FileAppend(const char *str, const char *file_name);
 /* Deletes file_name from the filesystem. Deallocates space if file_name was the
 last link to a file and no processes have the file open.
 Returns SUCCESS on success and FAILED_TO_DELETE_FILE on failure */
-op_status_t FileDelete(const char *null_ptr, const char *file_name);
+op_status_t FileRemove(const char *null_ptr, const char *file_name);
 
 /* Tries to read the file and counts number of lines.
 Returns FAILED_TO_OPEN if didn't succeed to open the file.
