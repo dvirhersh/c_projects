@@ -5,6 +5,7 @@
 
 typedef int (*cmd_compare_t)(const char *, const char *);
 typedef op_status_t (*act_t)(const char *, const char *file_name);
+static char *ReadLine(FILE *stream);
 
 typedef struct file_op
 {
@@ -12,6 +13,39 @@ typedef struct file_op
     cmd_compare_t cmd_compare_func;
     act_t act;
 } operation_t;
+
+static char *ReadLine(FILE *stream)
+{
+    size_t total = 0;
+    int c = 0;
+    char *s = (char *)malloc(4098);
+    if (s == NULL)
+    {
+        return NULL;
+    }
+
+    while (1)
+    {
+        c = fgetc(stream);
+        if (c == EOF)
+        {
+            if (total == 0)
+            {
+                free(s);
+                return NULL;
+            }
+            break;
+        }
+        if (c == '\n')
+        {
+            break;
+        }
+
+        s[total++] = (char)c;
+    }
+    s[total] = '\0';
+    return s;
+}
 
 static int CompareDefault(const char *str1, const char *str2)
 {
@@ -163,6 +197,7 @@ void EnterString(char *file_name)
     while (1)
     {
         printf("Enter your string\n");
+        next_line = ReadLine(stdin);
     }
 }
 
@@ -170,14 +205,19 @@ int main(void)
 {
     FILE *fptr;
     fptr = fopen("Elul.txt", "w");
-    (void)fptr;
+    if (NULL == fptr)
+        return FAILED_TO_OPEN;
 
     FileAppend("My name is what??", "Elul.txt");
     FileCountLinesAndPrint(NULL, "Elul.txt");
     FilePrependLine("Asaf birthday", "Elul.txt");
     /* FileDelete(NULL, "Elul.txt"); */
+
+    EnterString("Elul.txt");
     FileExitProgram(NULL, "Elul.txt");
     printf("Check if exit\n");
 
-    return 0;
+    fclose(fptr);
+
+    return SUCCESS;
 }
