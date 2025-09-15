@@ -26,7 +26,7 @@ op_status_t FileDelete(const char *null_ptr, const char *file_name)
 
     if (remove(file_name) == 0)
     {
-        printf("File %s was deleted", file_name);
+        printf("File %s was deleted\n", file_name);
         return SUCCESS;
     }
 
@@ -114,4 +114,11 @@ op_status_t FilePrependLine(const char *string, const char *file_name)
 
     fclose(fptr);
     return SUCCESS;
+}
+
+int main(void)
+{
+    FileAppend(NULL, "dvir.txt");
+    FileDelete(NULL, "dvir.txt");
+    return 0;
 }
