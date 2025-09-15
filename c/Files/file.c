@@ -1,17 +1,17 @@
 #include <stdio.h>  /* printf */
-#include <stdlib.h> /* malloc */
+#include <stdlib.h> /* strcmp */
 #include <string.h> /* malloc */
 #include "file.h"
 
 typedef int (*cmd_compare_t)(const char *, const char *);
-typedef op_status_t (*act_t)(const char *, const FILE *);
+typedef op_status_t (*act_t)(const char *, const char *file_name);
 
-/*typedef struct file_op
+typedef struct file_op
 {
     const char *op;
     cmd_compare_t cmd_compare_func;
     act_t act;
-} file_op_t;
+} operation_t;
 
 static int CompareDefault(const char *str1, const char *str2)
 {
@@ -29,19 +29,7 @@ static int CompareLessThen(const char *user_input, const char *cmd)
 {
     (void)cmd;
     return user_input && user_input[0] == '<';
-}*/
-
-/*void EnterString(char *file_name)
-{
-    op_status_t status = 0;
-
-    const file_op_t op_array[] = {
-        {"-remove", CompareCommand, FileDelete},
-        {"-count", CompareCommand, FileCountLinesAndPrint},
-        {"<", CompareLessThen, FilePrependLine},
-        {"-exit", CompareCommand, FileExitProgram},
-        {NULL, CompareDefault, FileAppend}};
-}*/
+}
 
 op_status_t FileAppend(const char *str, const char *file_name)
 {
@@ -157,6 +145,25 @@ op_status_t FilePrependLine(const char *string, const char *file_name)
 
     fclose(fptr);
     return SUCCESS;
+}
+
+void EnterString(char *file_name)
+{
+    char *next_line;
+    size_t i = 0, size;
+    op_status_t status = 0;
+    const operation_t operationsArray[] =
+        {{"-remove", CompareCommand, FileDelete},
+         {"-count", CompareCommand, FileCountLinesAndPrint},
+         {"-exit", CompareCommand, FileExitProgram},
+         {"<", CompareLessThen, FilePrependLine},
+         {NULL, CompareDefault, FileAppend}};
+    size = sizeof(operationsArray) / sizeof(operationsArray[0]);
+
+    while (1)
+    {
+        printf("Enter your string\n");
+    }
 }
 
 int main(void)
