@@ -1,6 +1,47 @@
 #include <stdio.h>  /* printf */
 #include <stdlib.h> /* malloc */
+#include <string.h> /* malloc */
 #include "file.h"
+
+typedef int (*cmd_compare_t)(const char *, const char *);
+typedef op_status_t (*act_t)(const char *, const FILE *);
+
+/*typedef struct file_op
+{
+    const char *op;
+    cmd_compare_t cmd_compare_func;
+    act_t act;
+} file_op_t;
+
+static int CompareDefault(const char *str1, const char *str2)
+{
+    (void)str1;
+    (void)str2;
+    return 1;
+}
+
+static int CompareCommand(const char *user_input, const char *cmd)
+{
+    return strcmp(user_input, cmd) == 0;
+}
+
+static int CompareLessThen(const char *user_input, const char *cmd)
+{
+    (void)cmd;
+    return user_input && user_input[0] == '<';
+}*/
+
+/*void EnterString(char *file_name)
+{
+    op_status_t status = 0;
+
+    const file_op_t op_array[] = {
+        {"-remove", CompareCommand, FileDelete},
+        {"-count", CompareCommand, FileCountLinesAndPrint},
+        {"<", CompareLessThen, FilePrependLine},
+        {"-exit", CompareCommand, FileExitProgram},
+        {NULL, CompareDefault, FileAppend}};
+}*/
 
 op_status_t FileAppend(const char *str, const char *file_name)
 {
