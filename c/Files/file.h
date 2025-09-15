@@ -21,7 +21,8 @@ typedef enum Operation_Status
     FAILED_TO_CLOSE,
     NO_STRING_GIVEN,
     FAIL_IN_MALLOC,
-    FAIL
+    FAIL,
+    EXIT
     /*add more statuses here*/
 } op_status_t; /* c_2_commands_t c_2_commands__t
 

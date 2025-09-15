@@ -129,9 +129,8 @@ op_status_t FileExitProgram(const char *str, const char *file_name)
 {
     (void)str;
     (void)file_name;
-    exit(0);
 
-    return 0;
+    return EXIT;
 }
 
 op_status_t FilePrependLine(const char *string, const char *file_name)
@@ -175,6 +174,12 @@ op_status_t FilePrependLine(const char *string, const char *file_name)
         return FAIL;
     }
 
+    string++; /* for "<" */
+    while (*string == ' ')
+    {
+        string++;
+    }
+
     fputs(string, fptr);
     fputc('\n', fptr);
 
@@ -214,7 +219,10 @@ void EnterStringToTheFile(char *file_name)
             {
                 status = operationsArray[i].act(next_line, file_name);
                 free(next_line);
-                printf("Dvir debug 1 \n");
+                if (status == EXIT)
+                    return;
+                if (status == FAIL)
+                    fprintf(stderr, "Failure \n");
                 break;
             }
         }
