@@ -100,7 +100,6 @@ op_status_t Logger(char *file_name)
         printf("type wanted action\n");
         if (scanf("%[^\n]%*c", string) != 1)
         {
-            printf("Dvir debug 1");
             fprintf(stderr, "Failed to read input\n");
         }
 

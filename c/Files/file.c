@@ -62,6 +62,7 @@ op_status_t FileExitProgram(const char *str, const char *file_name)
 {
     (void)str;
     (void)file_name;
+    exit(0);
 
     return 0;
 }
@@ -119,8 +120,16 @@ op_status_t FilePrependLine(const char *string, const char *file_name)
 
 int main(void)
 {
-    /* FileAppend(NULL, "dvir.txt"); */
-    /* FileDelete(NULL, "dvir.txt"); */
-    FileCountLinesAndPrint(NULL, "dvir.txt");
+    FILE *fptr;
+    fptr = fopen("Elul.txt", "w");
+    (void)fptr;
+
+    FileAppend("My name is what??", "Elul.txt");
+    FileCountLinesAndPrint(NULL, "Elul.txt");
+    FilePrependLine("Asaf birthday", "Elul.txt");
+    /* FileDelete(NULL, "Elul.txt"); */
+    FileExitProgram(NULL, "Elul.txt");
+    printf("Check if exit\n");
+
     return 0;
 }

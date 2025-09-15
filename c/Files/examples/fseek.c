@@ -14,7 +14,7 @@ int main()
         return 1;
     }
 
-    fprintf(fp, "Hello, fseek example Dvir Hershkovits!");
+    fprintf(fp, "Hello, fseek example Davi Avadia!");
     fclose(fp); // Close the file to ensure content is written
 
     // Open the file again for reading
