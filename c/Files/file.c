@@ -1,40 +1,55 @@
-#include <stdio.h>
+#include <stdio.h> /* printf */
+#include "file.h"
 
-static void Print(int num);
-static void PrintMeMain();
-int main(void);
-
-typedef struct
+op_status_t FileAppend(const char *str, const char *file_name)
 {
-    int num;
-    void (*Print)(int);
-} print_me_t;
+    FILE *fptr = fopen(file_name, "a");
 
-static void Print(int num)
-{
-    printf("Number = %d\n", num);
+    if (NULL == fptr)
+        return FAILED_TO_OPEN;
+
+    fprintf(fptr, "/n");
+    fprintf(fptr, "%s", str);
+    fclose(fptr);
+
+    return SUCCESS;
 }
 
-static void PrintMeMain()
+op_status_t FileDelete(const char *null_ptr, const char *file_name)
 {
-    size_t i = 0;
-    enum
+    (void)null_ptr;
+    if (remove(file_name) == 0)
     {
-        ARRAY_LEN = 10
-    };
-    print_me_t arr[ARRAY_LEN];
-
-    for (i = 0; i < ARRAY_LEN; i++)
-    {
-        arr[i].num = i * 3;
-        arr[i].Print = &Print;
-        arr[i].Print(arr[i].num);
+        printf("File %s was deleted", file_name);
+        return SUCCESS;
     }
+
+    printf("Couldn't delete File %s", file_name);
+    return FAILED_TO_DELETE_FILE;
 }
 
-int main(void)
+op_status_t FileCountLinesAndPrint(const char *null_ptr, const char *file_name)
 {
-    PrintMeMain();
 
-    return 0;
+    size_t number_of_lines = 0;
+    char c = 0;
+
+    FILE *fptr = fopen(file_name, "r");
+    if (NULL == fptr)
+        return FAILED_TO_OPEN;
+
+    (void)null_ptr;
+
+    while ((c = fgetc(fptr)) != EOF)
+        if ('\n' == c)
+            number_of_lines++;
+
+    fclose(fptr);
+
+    printf("number of lines is: %lu\n", number_of_lines);
+
+    return SUCCESS;
 }
+
+op_status_t FileExitProgram(const char *, const char *file_name);
+op_status_t FilePrependLine(const char *, const char *file_name);
