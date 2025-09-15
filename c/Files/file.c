@@ -1,4 +1,5 @@
-#include <stdio.h> /* printf */
+#include <stdio.h>  /* printf */
+#include <stdlib.h> /* malloc */
 #include "file.h"
 
 op_status_t FileAppend(const char *str, const char *file_name)
@@ -51,5 +52,61 @@ op_status_t FileCountLinesAndPrint(const char *null_ptr, const char *file_name)
     return SUCCESS;
 }
 
-op_status_t FileExitProgram(const char *, const char *file_name);
-op_status_t FilePrependLine(const char *, const char *file_name);
+op_status_t FileExitProgram(const char *str, const char *file_name)
+{
+    (void)str;
+    (void)file_name;
+
+    return 0;
+}
+
+op_status_t FilePrependLine(const char *string, const char *file_name)
+{
+    FILE *fptr = NULL;
+    char *temp_file = NULL;
+    long file_size = 0;
+    size_t read_check = 0;
+
+    fptr = fopen(file_name, "rb");
+    if (fptr == NULL)
+        return FAILED_TO_OPEN;
+
+    fseek(fptr, 0, SEEK_END);
+    file_size = ftell(fptr);
+    rewind(fptr);
+
+    temp_file = (char *)malloc(file_size);
+    if (temp_file == NULL)
+    {
+        fclose(fptr);
+        return FAILED_TO_CLOSE;
+    }
+
+    read_check = fread(temp_file, 1, file_size, fptr);
+    if ((long)read_check != file_size)
+    {
+        free(temp_file);
+        temp_file = NULL;
+        fclose(fptr);
+        return FAILED_TO_CLOSE;
+    }
+
+    fclose(fptr);
+
+    fptr = fopen(file_name, "wb");
+    if (fptr == NULL)
+    {
+        free(temp_file);
+        return FAIL;
+    }
+
+    fputs(string, fptr);
+    fputc('\n', fptr);
+
+    fwrite(temp_file, 1, file_size, fptr);
+    free(temp_file);
+    temp_file = NULL;
+
+    fclose(fptr);
+    return SUCCESS;
+}
