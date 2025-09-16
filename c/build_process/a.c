@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "str.h"
 
 void hello(void)
 {
@@ -7,6 +8,9 @@ void hello(void)
 
 int main(void)
 {
+    size_t x = StrLen("Tachnis lo");
+    printf("%lu\n", x);
     hello();
+
     return 0;
 }
