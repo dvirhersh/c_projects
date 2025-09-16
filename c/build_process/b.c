@@ -1,12 +1,7 @@
 #include <stdio.h>
 
-void Hello(void)
+void hello(void)
 {
     printf("Hello from B!\n");
 }
 
-int main(void)
-{
-    Hello();
-    return 0;
-}
